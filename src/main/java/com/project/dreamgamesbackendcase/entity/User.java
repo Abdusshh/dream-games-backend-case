@@ -1,11 +1,8 @@
 package com.project.dreamgamesbackendcase.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,5 +11,37 @@ public class User {
     private int level;
     private int coins;
 
-    // Constructors, getters, and setters
+    // Constructors
+    public User() {}
+
+    public User(int level, int coins) {
+        this.level = level;
+        this.coins = coins;
+    }
+
+    // Getters
+    public Long getId() {
+        return id;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    // Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
 }
