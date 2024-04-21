@@ -1,6 +1,11 @@
 package com.project.dreamgamesbackendcase.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -10,6 +15,14 @@ public class User {
 
     private int level;
     private int coins;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(
+            name = "team_members",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "team_id")
+    )
+    @JsonIgnore
+    private Set<Team> teams = new HashSet<>();
 
     // Constructors
     public User() {}
@@ -43,5 +56,24 @@ public class User {
 
     public void setCoins(int coins) {
         this.coins = coins;
+    }
+
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
+    }
+
+    // Helper methods to manage bidirectional relationship
+    public void addTeam(Team team) {
+        teams.add(team);
+        team.getMembers().add(this);
+    }
+
+    public void removeTeam(Team team) {
+        teams.remove(team);
+        team.getMembers().remove(this);
     }
 }

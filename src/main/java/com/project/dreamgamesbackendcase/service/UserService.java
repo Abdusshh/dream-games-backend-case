@@ -12,15 +12,20 @@ public class UserService {
 
     public User createUser() {
         User newUser = new User();
+
         newUser.setLevel(1);
         newUser.setCoins(5000);
+
         return userRepository.save(newUser);
     }
 
     public User updateUserLevel(Long userId, int levelIncrement, int coinIncrement) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
         user.setLevel(user.getLevel() + levelIncrement);
         user.setCoins(user.getCoins() + coinIncrement);
+
         return userRepository.save(user);
     }
 }

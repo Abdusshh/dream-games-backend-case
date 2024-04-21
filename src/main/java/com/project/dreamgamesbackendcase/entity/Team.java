@@ -1,6 +1,10 @@
 package com.project.dreamgamesbackendcase.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "teams")
@@ -10,9 +14,16 @@ public class Team {
     private Long id;
 
     private String name;
-    @Column(name = "member_count")
+    @Column(name = "member_count", unique = true)
     private int memberCount;
-    private static final int CAPACITY = 20;
+    private int capacity = 20;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "team_members",
+            joinColumns = @JoinColumn(name = "team_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JsonIgnore
+    private Set<User> members = new HashSet<>();
 
     // Constructors
     public Team() {}
@@ -36,7 +47,7 @@ public class Team {
     }
 
     public int getCapacity() {
-        return CAPACITY;
+        return capacity;
     }
 
     public void setId(Long id) {
@@ -49,5 +60,23 @@ public class Team {
 
     public void setMemberCount(int memberCount) {
         this.memberCount = memberCount;
+    }
+
+    public Set<User> getMembers() {
+        return members;
+    }
+
+    public void setMembers(Set<User> members) {
+        this.members = members;
+    }
+
+    public void addMember(User user) {
+        this.members.add(user);
+        user.getTeams().add(this);
+    }
+
+    public void removeMember(User user) {
+        this.members.remove(user);
+        user.getTeams().remove(this);
     }
 }

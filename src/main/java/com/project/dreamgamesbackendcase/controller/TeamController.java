@@ -7,27 +7,50 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/teams")
 public class TeamController {
     @Autowired
     private TeamService teamService;
 
-    @PostMapping
-    public ResponseEntity<Team> createTeam(@RequestBody Team team) {
-        Team newTeam = teamService.createTeam(team.getName());
-        return new ResponseEntity<>(newTeam, HttpStatus.CREATED);
+    @PostMapping("/add")
+    public ResponseEntity<?> createTeam(@RequestParam Long userId, @RequestParam String teamName) {
+        try {
+            Team newTeam = teamService.createTeam(userId, teamName);
+            return new ResponseEntity<>(newTeam, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @PostMapping("/{teamId}/join")
-    public ResponseEntity<Team> joinTeam(@PathVariable Long teamId) {
-        Team team = teamService.joinTeam(teamId);
-        return new ResponseEntity<>(team, HttpStatus.OK);
+    @PutMapping("/join")
+    public ResponseEntity<?> joinTeam(@RequestParam Long userId, @RequestParam Long teamId) {
+        try {
+            Team team = teamService.joinTeam(userId, teamId);
+            return new ResponseEntity<>(team, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @PostMapping("/{teamId}/leave")
-    public ResponseEntity<Team> leaveTeam(@PathVariable Long teamId) {
-        Team team = teamService.leaveTeam(teamId);
-        return new ResponseEntity<>(team, HttpStatus.OK);
+    @PutMapping("/leave")
+    public ResponseEntity<?> leaveTeam(@RequestParam Long userId, @RequestParam Long teamId) {
+        try {
+            teamService.leaveTeam(userId, teamId);
+            return new ResponseEntity<>("Successfully left the team: " + teamId, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/get-available")
+    public ResponseEntity<List<Team>> getAvailableTeams() {
+        List<Team> teams = teamService.getAvailableTeams();
+        if (teams.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(teams, HttpStatus.OK);
     }
 }
