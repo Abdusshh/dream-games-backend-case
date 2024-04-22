@@ -1,4 +1,4 @@
-package com.project.dreamgamesbackendcase.entity;
+package com.project.dreamgamesbackendcase.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

@@ -1,7 +1,7 @@
 package com.project.dreamgamesbackendcase;
 
-import com.project.dreamgamesbackendcase.entity.Team;
-import com.project.dreamgamesbackendcase.entity.User;
+import com.project.dreamgamesbackendcase.models.Team;
+import com.project.dreamgamesbackendcase.models.User;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package com.project.dreamgamesbackendcase.service;
 
-import com.project.dreamgamesbackendcase.entity.User;
+import com.project.dreamgamesbackendcase.models.User;
 import com.project.dreamgamesbackendcase.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

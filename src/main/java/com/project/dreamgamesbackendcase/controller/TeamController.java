@@ -1,6 +1,6 @@
 package com.project.dreamgamesbackendcase.controller;
 
-import com.project.dreamgamesbackendcase.entity.Team;
+import com.project.dreamgamesbackendcase.models.Team;
 import com.project.dreamgamesbackendcase.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

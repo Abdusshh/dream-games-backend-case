@@ -1,6 +1,6 @@
 package com.project.dreamgamesbackendcase.repository;
 
-import com.project.dreamgamesbackendcase.entity.Team;
+import com.project.dreamgamesbackendcase.models.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

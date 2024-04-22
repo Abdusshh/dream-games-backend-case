@@ -1,7 +1,7 @@
 package com.project.dreamgamesbackendcase.service;
 
-import com.project.dreamgamesbackendcase.entity.Team;
-import com.project.dreamgamesbackendcase.entity.User;
+import com.project.dreamgamesbackendcase.models.Team;
+import com.project.dreamgamesbackendcase.models.User;
 import com.project.dreamgamesbackendcase.repository.TeamRepository;
 import com.project.dreamgamesbackendcase.repository.UserRepository;
 import jakarta.transaction.Transactional;
