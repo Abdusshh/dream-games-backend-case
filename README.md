@@ -32,12 +32,8 @@ The backend is structured around the MVC (Model-View-Controller) pattern, with t
 - **Use of `@Transactional`**: Ensures that operations related to financial transactions and team membership changes are atomic and consistent.
 - **Error Handling and Validation**: Robust error handling and input validation provide security and ensure the database integrity.
 
-## Running the Application
-To run the application, you will need:
-- JDK 11 or higher
-- Maven for dependency management and running the project
-- MySQL database running locally or on a server
+## Postman
+- You can access the postman collection under the postman directory and directly import it.
 
-To start the application:
-1. Update the `application.properties` file with your MySQL user and password.
-2. Run the command `mvn spring-boot:run` from the root directory of the project.
+## MySQL
+- You can access the table generation and dummy data insertion file under the mysql directory.
