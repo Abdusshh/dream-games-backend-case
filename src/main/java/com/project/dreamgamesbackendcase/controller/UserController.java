@@ -16,15 +16,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserRepository userRepository;
-
-//  For debugging
-    @GetMapping("/get-all-users")
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
-    }
-
     @PostMapping("/add")
     public ResponseEntity<User> createUser() {
         User newUser = userService.createUser();
