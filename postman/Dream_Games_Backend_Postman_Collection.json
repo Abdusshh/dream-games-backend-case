@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "030f4677-5c9c-456d-803b-021ed14464fb",
+		"name": "Dream Games Backend",
+		"description": "This Postman collection encapsulates all the API endpoints for the Dream Games Backend system.\n\n- **Create User**: Allows the creation of new users, initializing them with default settings necessary for game participation.\n    \n- **Update Level**: Facilitates the updating of user levels and coins, reflecting their progression and earnings within the game.\n    \n- **Create Team**: Enables users to create new teams, deducting coins as a cost for team creation, and establishing team settings.\n    \n- **Join Team**: Provides functionality for users to join existing teams, ensuring that they have enough coins and that the team has available slots.\n    \n- **Leave Team**: Allows users to leave teams, updating the team's member count and ensuring that the user is actually part of the team before removal.\n    \n- **Get Teams**: Fetches a list of teams with available spots, supporting the dynamic nature of team memberships and the need for quick updates.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34407011"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Level",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/update-level/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"update-level",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Team",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/teams/add?userId=1&teamName=Dream%20Team",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"teams",
+						"add"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "teamName",
+							"value": "Dream%20Team"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join Team",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/teams/join?userId=1&teamId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"teams",
+						"join"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "teamId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Leave Team",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/teams/leave?userId=1&teamId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"teams",
+						"leave"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "teamId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Teams",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/teams/get-available",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"teams",
+						"get-available"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
